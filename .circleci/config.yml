@@ -16,3 +16,4 @@ workflows:
       - gradle/test:
           executor: openjdk17
           test_command: :src:server:test
+          test_results_path: src/server/build/test-results
