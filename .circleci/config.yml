@@ -30,4 +30,4 @@ workflows:
   build-and-test:
     jobs:
       - gradle/test:
-          executor: cimg/openjdk:17.0
+          executor: cimg/openjdk:17.0.3
