@@ -29,4 +29,5 @@ workflows:
       - say-hello
   build-and-test:
     jobs:
-      - gradle/test
+      - gradle/test:
+          executor: cimg/openjdk:17.0
