@@ -9,4 +9,9 @@ class PeopleAcceptanceTest {
     void shouldPass() {
         assertThat(true).isTrue();
     }
+
+    @Test
+    void shouldFail() {
+        assertThat(false).isTrue();
+    }
 }

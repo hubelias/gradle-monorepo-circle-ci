@@ -5,7 +5,6 @@ repositories {
 plugins {
     id("myproject.java-conventions")
     id("org.springframework.boot")
-    id("io.spring.dependency-management")
 }
 
 dependencies {
