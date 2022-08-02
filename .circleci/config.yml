@@ -15,3 +15,4 @@ workflows:
     jobs:
       - gradle/test:
           executor: openjdk17
+          test_command: :src:server:test
