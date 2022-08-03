@@ -3,5 +3,5 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":src:server-api"))
+    implementation(project(":src:server-apis"))
 }
