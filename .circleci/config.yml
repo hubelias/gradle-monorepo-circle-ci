@@ -17,7 +17,9 @@ jobs:
     steps:
       - checkout
       - run:
-          command: gradlew :src:server:test
+          command: ./gradlew :src:server:test
+      - gradle/collect_test_results:
+          test_results_path: src/server/build/test-results
 
 workflows:
   build-and-test:
