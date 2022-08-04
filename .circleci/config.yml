@@ -10,10 +10,16 @@ executors:
       # OpenJDK convenience image: https://circleci.com/developer/images/image/cimg/openjdk
       - image: cimg/openjdk:17.0
 
+jobs:
+  test_sub_project:
+    executor:
+      name: openjdk17
+    steps:
+      - checkout
+      - run:
+          command: gradlew :src:server:test
+
 workflows:
   build-and-test:
     jobs:
-      - gradle/test:
-          executor: openjdk17
-          test_command: :src:server:test
-          test_results_path: src/server/build/test-results
+      - test_sub_project
