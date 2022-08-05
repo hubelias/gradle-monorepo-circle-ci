@@ -18,9 +18,11 @@ executors:
 jobs:
   checkout_and_merge:
     executor:
-      name: node
+      name: openjdk17
     steps:
       - checkout
+      - run:
+          command: ./gradlew help
       - persist_to_workspace:
           root: .
           paths:
