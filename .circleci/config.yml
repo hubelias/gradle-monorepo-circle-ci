@@ -32,7 +32,8 @@ jobs:
       project:
         type: string
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - run:
           command: ./gradlew :src:<<parameters.project>>:test
       - gradle/collect_test_results:
