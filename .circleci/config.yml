@@ -47,10 +47,10 @@ workflows:
       - test_sub_project:
           name: Server tests
           requires:
-            - checkout_and_merge
+            - Init workspace
           project: server
       - test_sub_project:
           name: Client tests
           requires:
-            - checkout_and_merge
+            - Init workspace
           project: client
