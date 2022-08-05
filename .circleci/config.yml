@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: ./gradlew :src:<<project>>:test
+          command: ./gradlew :src:<<parameters.project>>:test
       - gradle/collect_test_results:
           test_results_path: src/server/build/test-results
 
