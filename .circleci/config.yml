@@ -42,9 +42,15 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - checkout_and_merge
+      - checkout_and_merge:
+          name: Init workspace
       - test_sub_project:
           name: Server tests
           requires:
             - checkout_and_merge
           project: server
+      - test_sub_project:
+          name: Client tests
+          requires:
+            - checkout_and_merge
+          project: client
