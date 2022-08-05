@@ -9,8 +9,22 @@ executors:
     docker:
       # OpenJDK convenience image: https://circleci.com/developer/images/image/cimg/openjdk
       - image: cimg/openjdk:17.0
+    resource_class: small
+  node:
+    docker:
+      - image: cimg/node:current
+    resource_class: small
 
 jobs:
+  checkout_and_merge:
+    executor:
+      name: node
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test_sub_project:
     executor:
       name: openjdk17
@@ -25,8 +39,9 @@ jobs:
           test_results_path: src/server/build/test-results
 
 workflows:
-  build-and-test:
+  build_and_test:
     jobs:
+      - checkout_and_merge
       - test_sub_project:
           name: Server tests
           project: server
