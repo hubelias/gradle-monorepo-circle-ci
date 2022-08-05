@@ -45,4 +45,6 @@ workflows:
       - checkout_and_merge
       - test_sub_project:
           name: Server tests
+          requires:
+            - checkout_and_merge
           project: server
