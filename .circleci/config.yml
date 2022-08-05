@@ -14,14 +14,18 @@ jobs:
   test_sub_project:
     executor:
       name: openjdk17
+    parameters:
+      project:
+        type: string
     steps:
       - checkout
       - run:
-          command: ./gradlew :src:server:test
+          command: ./gradlew :src:<<project>>:test
       - gradle/collect_test_results:
           test_results_path: src/server/build/test-results
 
 workflows:
   build-and-test:
     jobs:
-      - test_sub_project
+      - test_sub_project:
+          project: server
