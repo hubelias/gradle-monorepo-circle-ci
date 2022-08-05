@@ -28,4 +28,5 @@ workflows:
   build-and-test:
     jobs:
       - test_sub_project:
+          name: Server tests
           project: server
