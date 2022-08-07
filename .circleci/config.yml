@@ -23,11 +23,11 @@ jobs:
     steps:
       - checkout
       - gradle/with_cache:
-          cache_key: bb
+          cache_key: bbb
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
-                command: ./gradlew --no-daemon --parallel testClasses
+                command: ./gradlew --no-daemon --parallel build -xtest
       - persist_to_workspace:
           root: .
           paths:
@@ -42,7 +42,7 @@ jobs:
       - attach_workspace:
           at: .
       - gradle/with_cache:
-          cache_key: bb
+          cache_key: bbb
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
