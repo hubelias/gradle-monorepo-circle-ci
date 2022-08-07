@@ -32,7 +32,7 @@ jobs:
       - save_cache:
           key: gradle-{{ .Branch }}-1
           paths:
-            - $GRADLE_USER_HOME
+            - ~/.gradle-user-home
       - persist_to_workspace:
           root: .
           paths:
