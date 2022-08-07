@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - gradle/with_cache:
-          cache_key: bbb
+          cache_key: ccc
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
@@ -42,7 +42,7 @@ jobs:
       - attach_workspace:
           at: .
       - gradle/with_cache:
-          cache_key: bbb
+          cache_key: ccc
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
