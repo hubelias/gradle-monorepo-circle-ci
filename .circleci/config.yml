@@ -24,15 +24,12 @@ jobs:
       name: openjdk17
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - gradle-{{ .Branch }}-1
-      - run:
-          command: ./gradlew help
-      - save_cache:
-          key: gradle-{{ .Branch }}-1
-          paths:
-            - ~/.gradle-user-home
+      - gradle/with_cache:
+          cache_key: 1
+          deps_checksum_file: build.gradle.kts
+          steps:
+            - run:
+                command: ./gradlew help
       - persist_to_workspace:
           root: .
           paths:
@@ -44,15 +41,16 @@ jobs:
       project:
         type: string
     steps:
-      - restore_cache:
-          keys:
-            - gradle-{{ .Branch }}-1
-      - attach_workspace:
-          at: .
-      - run:
-          command: ./gradlew :src:<<parameters.project>>:test
-      - gradle/collect_test_results:
-          test_results_path: src/server/build/test-results
+      - gradle/with_cache:
+          cache_key: 1
+          deps_checksum_file: build.gradle.kts
+          steps:
+            - attach_workspace:
+                at: .
+            - run:
+                command: ./gradlew :src:<<parameters.project>>:test
+            - gradle/collect_test_results:
+                test_results_path: src/server/build/test-results
 
 workflows:
   build_and_test:
