@@ -10,8 +10,6 @@ executors:
       # OpenJDK convenience image: https://circleci.com/developer/images/image/cimg/openjdk
       - image: cimg/openjdk:17.0
     resource_class: small
-    environment:
-      GRADLE_USER_HOME: ~/.gradle-user-home
 
   node:
     docker:
@@ -25,7 +23,7 @@ jobs:
     steps:
       - checkout
       - gradle/with_cache:
-          cache_key: aaa
+          cache_key: bb
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
@@ -43,8 +41,12 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run:
-          command: ./gradlew :src:<<parameters.project>>:test
+      - gradle/with_cache:
+          cache_key: bb
+          deps_checksum_file: build.gradle.kts
+          steps:
+            - run:
+                command: ./gradlew :src:<<parameters.project>>:test
       - gradle/collect_test_results:
           test_results_path: src/server/build/test-results
 
