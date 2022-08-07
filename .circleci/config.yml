@@ -27,7 +27,7 @@ jobs:
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
-                command: ./gradlew --no-daemon --parallel build -xtest
+                command: ./gradlew --no-daemon --parallel --scan build -xtest
       - persist_to_workspace:
           root: .
           paths:
@@ -46,7 +46,7 @@ jobs:
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
-                command: ./gradlew --no-daemon :src:<<parameters.project>>:test
+                command: ./gradlew --no-daemon --scan :src:<<parameters.project>>:test
       - gradle/collect_test_results:
           test_results_path: src/server/build/test-results
 
