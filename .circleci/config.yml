@@ -10,6 +10,9 @@ executors:
       # OpenJDK convenience image: https://circleci.com/developer/images/image/cimg/openjdk
       - image: cimg/openjdk:17.0
     resource_class: small
+    environment:
+      GRADLE_USER_HOME: $CIRCLE_WORKING_DIRECTORY/.gradle-user-home
+
   node:
     docker:
       - image: cimg/node:current
