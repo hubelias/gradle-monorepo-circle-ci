@@ -25,7 +25,7 @@ jobs:
     steps:
       - checkout
       - gradle/with_cache:
-          cache_key: 1
+          cache_key: aa
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
@@ -42,7 +42,7 @@ jobs:
         type: string
     steps:
       - gradle/with_cache:
-          cache_key: 1
+          cache_key: aa
           deps_checksum_file: build.gradle.kts
           steps:
             - attach_workspace:
