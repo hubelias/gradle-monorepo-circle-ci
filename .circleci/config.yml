@@ -27,7 +27,7 @@ jobs:
           deps_checksum_file: build.gradle.kts
           steps:
             - run:
-                command: ./gradlew testClasses
+                command: ./gradlew --no-daemon testClasses
       - persist_to_workspace:
           root: .
           paths:
